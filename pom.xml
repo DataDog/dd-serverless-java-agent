@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.datadoghq.com</groupId>
-    <artifactId>dd-serverless-java-agent</artifactId>
+    <artifactId>dd-serverless-azure-java-agent</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
-    <name>Datadog Serverless Java Agent</name>
+    <name>Datadog Serverless Azure Java Agent</name>
 
     <dependencies>
         <dependency>
@@ -73,7 +73,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifestEntries>
-                            <Premain-Class>com.datadog.ServerlessAgent</Premain-Class>
+                            <Premain-Class>com.datadog.ServerlessAzureAgent</Premain-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>

@@ -1,13 +1,13 @@
-# Datadog Serverless Java Agent
+# Datadog Serverless Azure Java Agent
 
 Java agent used to start the Datadog Serverless Mini Agent. Intended for use with [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps).
 
 # Getting Started
 
-- From the latest release, download `dd-serverless-java-agent.jar` and upload it to your Azure Spring App in persistent storage.
-- Add the Datadog Serverless Java Agent and Datadog Java Tracer as Java agents to your `JVM_OPTIONS`.
+- From the latest release, download `dd-serverless-azure-java-agent.jar` and upload it to your Azure Spring App in persistent storage.
+- Add the Datadog Serverless Azure Java Agent and Datadog Java Tracer as Java agents to your `JVM_OPTIONS`.
 ```
--javaagent:/persistent/dd-serverless-java-agent.jar -javaagent:/persistent/dd-java-agent.jar
+-javaagent:/persistent/dd-serverless-azure-java-agent.jar -javaagent:/persistent/dd-java-agent.jar
 ```
 - Set environment variables
 * `DD_API_KEY` = `<YOUR API KEY>`

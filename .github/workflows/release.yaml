@@ -1,12 +1,12 @@
-name: Build and Release the Serverless Java Agent
+name: Build and Release the Serverless Azure Java Agent
 on:
   push:
     tags:
-      - "dd-serverless-java-agent-**"
+      - "dd-serverless-azure-java-agent-**"
 
 jobs:
   build:
-    name: Build Serverless Java Agent
+    name: Build Serverless Azure Java Agent
     runs-on: ubuntu-latest
     outputs:
       mini-agent-version: ${{ steps.get-serverless-mini-agent.outputs.mini_agent_version }}
@@ -33,7 +33,7 @@ jobs:
         with:
           java-version: "8"
           distribution: "zulu"
-      - name: Build dd-serverless-java-agent jar
+      - name: Build dd-serverless-azure-java-agent jar
         run: mvn clean install
       - name: Upload artifact for release
         uses: actions/upload-artifact@v4
@@ -54,7 +54,7 @@ jobs:
       - name: Rename artifacts
         run: |
           cp release/${{ github.ref_name }}-jar-with-dependencies.jar release/${{ github.ref_name }}.jar
-          cp release/${{ github.ref_name }}-jar-with-dependencies.jar release/dd-serverless-java-agent.jar
+          cp release/${{ github.ref_name }}-jar-with-dependencies.jar release/dd-serverless-azure-java-agent.jar
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
@@ -64,11 +64,11 @@ jobs:
           make_latest: true
           files: |
             release/${{ github.ref_name }}.jar
-            release/dd-serverless-java-agent.jar
+            release/dd-serverless-azure-java-agent.jar
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           name: Latest
           tag_name: download-latest
           body: "This release tracks the latest version available, currently **${{ github.ref_name }}**."
-          files: release/dd-serverless-java-agent.jar
+          files: release/dd-serverless-azure-java-agent.jar
