@@ -28,13 +28,10 @@ jobs:
 
           mkdir src/main/resources
           cp ./temp/datadog-serverless-agent/datadog-serverless-agent-linux-amd64/datadog-serverless-trace-mini-agent src/main/resources/datadog-serverless-trace-mini-agent
-      - name: Set up JDK 8
-        uses: actions/setup-java@v4
-        with:
-          java-version: "8"
-          distribution: "zulu"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build dd-serverless-azure-java-agent jar
-        run: mvn clean install
+        run: ./build.sh
       - name: Upload artifact for release
         uses: actions/upload-artifact@v4
         with:
