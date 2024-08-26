@@ -29,6 +29,6 @@ Build the Datadog Serverless Mini Agent from [libdatadog](https://github.com/Dat
 
 To build the project run:
 ```
-mvn clean install
+./build.sh
 ```
 
