@@ -1,4 +1,6 @@
-FROM mcr.microsoft.com/java/maven:8-zulu-debian10
+FROM azul/zulu-openjdk:8
+
+RUN apt-get -y update && apt-get -y install maven
 
 WORKDIR /app
 

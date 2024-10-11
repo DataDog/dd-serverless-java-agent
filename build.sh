@@ -7,4 +7,4 @@ docker buildx build --platform linux/amd64 \
     . --load
 
 dockerId=$(docker create datadog/build-dd-serverless-java-agent:$VERSION)
-docker cp $dockerId:/app/target/dd-serverless-azure-java-agent-$VERSION-jar-with-dependencies.jar ./target/dd-serverless-azure-java-agent-$VERSION-jar-with-dependencies.jar
+docker cp $dockerId:/app/target/dd-serverless-azure-java-agent-$VERSION.jar ./target/dd-serverless-azure-java-agent-$VERSION.jar
