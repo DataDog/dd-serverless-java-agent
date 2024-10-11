@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release
-          path: target/${{ github.ref_name }}-jar-with-dependencies.jar
+          path: target/${{ github.ref_name }}.jar
   release:
     name: Release
     needs: [build]
@@ -48,10 +48,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Download build artifact
         uses: actions/download-artifact@v4
-      - name: Rename artifacts
-        run: |
-          cp release/${{ github.ref_name }}-jar-with-dependencies.jar release/${{ github.ref_name }}.jar
-          cp release/${{ github.ref_name }}-jar-with-dependencies.jar release/dd-serverless-azure-java-agent.jar
+      - name: Copy latest artifact
+        run: cp release/${{ github.ref_name }}.jar release/dd-serverless-azure-java-agent.jar
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
