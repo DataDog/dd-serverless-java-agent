@@ -1,21 +1,31 @@
 # Datadog Serverless Azure Java Agent
 
-Java agent used to start the Datadog Serverless Mini Agent. Intended for use with [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps).
+Java agent used to start the Datadog Serverless Mini Agent. Intended for use with [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps) and [Azure Functions](https://azure.microsoft.com/en-us/products/functions).
 
 # Getting Started
 
-- From the latest release, download `dd-serverless-azure-java-agent.jar` and upload it to your Azure Spring App in persistent storage.
-- Add the Datadog Serverless Azure Java Agent and Datadog Java Tracer as Java agents to your `JVM_OPTIONS`.
+- From the latest releases, download `dd-serverless-azure-java-agent.jar` and `dd-java-agent.jar` to your app:
+  * `wget -O dd-serverless-azure-java-agent.jar 'https://dtdg.co/latest-serverless-azure-java-agent'`
+  * `wget -O dd-java-agent.jar 'https://dtdg.co/latest-java-tracer'`
+- Add the Datadog Serverless Azure Java Agent and Datadog Java Tracer as Java agents using the appropriate JVM Options environment variable:
+  * Azure Spring App
+    - `JVM_OPTIONS`
+  * Azure Function, Consumption Plan
+    - `languageWorkers__java__arguments`
+  * Azure Function, Premium/Dedicated Plan
+    - `JAVA_OPTS`
+  
 ```
--javaagent:/persistent/dd-serverless-azure-java-agent.jar -javaagent:/persistent/dd-java-agent.jar
+-javaagent:/path/to/dd-serverless-azure-java-agent.jar -javaagent:/path/to/dd-java-agent.jar
 ```
-- Set environment variables
-* `DD_API_KEY` = `<YOUR API KEY>`
-* `DD_SITE` = `datadoghq.com`
-* `DD_SERVICE` = `<SERVICE NAME>`
-* `DD_ENV` = `<ENVIRONMENT`
-* `DD_VERSION` = `<VERSION>`
-* `DD_TRACE_TRACER_METRICS_ENABLED` = `true`
+
+- Set Datadog environment variables
+  * `DD_API_KEY` = `<YOUR API KEY>`
+  * `DD_SITE` = `datadoghq.com`
+  * `DD_SERVICE` = `<SERVICE NAME>`
+  * `DD_ENV` = `<ENVIRONMENT`
+  * `DD_VERSION` = `<VERSION>`
+  * `DD_TRACE_TRACER_METRICS_ENABLED` = `true`
 
 # Contributing
 
@@ -25,7 +35,7 @@ Follow the instructions in the `dd-trace-java` repo to set up your Java environm
 
 ## Building the project
 
-Build the Datadog Serverless Mini Agent from [libdatadog](https://github.com/DataDog/libdatadog) and add the linux binary, `datadog-serverless-trace-mini-agent`, to `src/main/resources`.
+Build the Datadog Serverless Mini Agent from [libdatadog](https://github.com/DataDog/libdatadog) and add the binaries, `datadog-serverless-trace-mini-agent` and `datadog-serverless-trace-mini-agent.exe`, to `src/main/resources`.
 
 To build the project run:
 ```
