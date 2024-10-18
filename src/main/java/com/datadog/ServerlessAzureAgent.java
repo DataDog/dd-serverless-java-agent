@@ -45,6 +45,7 @@ public class ServerlessAzureAgent {
                 .getResourceAsStream(fileName)) {
             if (inputStream == null) {
                 log.error("{} not found", fileName);
+                return;
             }
 
             Path tempDir = Paths.get(tempDirPath);
