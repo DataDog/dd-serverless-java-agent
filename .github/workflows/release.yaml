@@ -28,6 +28,7 @@ jobs:
 
           mkdir src/main/resources
           cp ./temp/datadog-serverless-agent/datadog-serverless-agent-linux-amd64/datadog-serverless-trace-mini-agent src/main/resources/datadog-serverless-trace-mini-agent
+          cp ./temp/datadog-serverless-agent/datadog-serverless-agent-windows-amd64/datadog-serverless-trace-mini-agent.exe src/main/resources/datadog-serverless-trace-mini-agent.exe
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build dd-serverless-azure-java-agent jar

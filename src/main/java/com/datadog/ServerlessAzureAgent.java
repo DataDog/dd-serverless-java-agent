@@ -12,16 +12,40 @@ import org.slf4j.LoggerFactory;
 
 public class ServerlessAzureAgent {
     private static final Logger log = LoggerFactory.getLogger(ServerlessAzureAgent.class);
-    private static final String fileName = "datadog-serverless-trace-mini-agent";
-    private static final String tempDirPath = "/tmp/datadog";
+    private static final String os = System.getProperty("os.name").toLowerCase();
+
+    public static boolean isWindows() {
+        return os.contains("win");
+    }
+
+    public static boolean isLinux() {
+        return os.contains("linux");
+    }
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
+        final String fileName;
+        final String tempDirPath;
+
+        if (isWindows()) {
+            log.debug("Detected {}", os);
+            fileName = "datadog-serverless-trace-mini-agent.exe";
+            tempDirPath = "C:/local/Temp/datadog";
+        } else if (isLinux()) {
+            log.debug("Detected {}", os);
+            fileName = "datadog-serverless-trace-mini-agent";
+            tempDirPath = "/tmp/datadog";
+        } else {
+            log.error("Unsupported operating system {}", os);
+            return;
+        }
+
         log.info("Attempting to start {}", fileName);
 
         try (InputStream inputStream = ServerlessAzureAgent.class.getClassLoader()
                 .getResourceAsStream(fileName)) {
             if (inputStream == null) {
                 log.error("{} not found", fileName);
+                return;
             }
 
             Path tempDir = Paths.get(tempDirPath);
