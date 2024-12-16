@@ -1,2 +1,5 @@
-datadog-serverless-compat*
+# Compiled Binaries
+bin
+
+# Maven
 target

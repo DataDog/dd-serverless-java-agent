@@ -29,8 +29,8 @@ jobs:
           unzip ./temp/datadog-serverless-agent.zip -d ./temp/datadog-serverless-agent
 
           mkdir src/main/resources
-          cp ./temp/datadog-serverless-agent/datadog-serverless-agent-linux-amd64/datadog-serverless-trace-mini-agent src/main/resources/datadog-serverless-compat
-          cp ./temp/datadog-serverless-agent/datadog-serverless-agent-windows-amd64/datadog-serverless-trace-mini-agent.exe src/main/resources/datadog-serverless-compat
+          cp ./temp/datadog-serverless-agent/datadog-serverless-agent-linux-amd64/datadog-serverless-trace-mini-agent bin/linux-amd64/datadog-serverless-compat
+          cp ./temp/datadog-serverless-agent/datadog-serverless-agent-windows-amd64/datadog-serverless-trace-mini-agent.exe bin/windows-amd64/datadog-serverless-compat.exe
       - uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
       - run: ./build.sh
       - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3

@@ -25,9 +25,9 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>bin</directory>
                 <includes>
-                    <include>datadog-serverless-compat*</include>
+                    <include>**/datadog-serverless-compat*</include>
                 </includes>
             </resource>
         </resources>
