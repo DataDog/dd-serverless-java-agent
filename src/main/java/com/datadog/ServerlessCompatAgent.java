@@ -28,11 +28,11 @@ public class ServerlessCompatAgent {
 
         if (isWindows()) {
             log.debug("Detected {}", os);
-            fileName = "datadog-serverless-compat.exe";
+            fileName = "bin/windows-amd64/datadog-serverless-compat.exe";
             tempDirPath = "C:/local/Temp/datadog";
         } else if (isLinux()) {
             log.debug("Detected {}", os);
-            fileName = "datadog-serverless-compat";
+            fileName = "bin/linux-amd64/datadog-serverless-compat";
             tempDirPath = "/tmp/datadog";
         } else {
             log.error("Unsupported operating system {}", os);
