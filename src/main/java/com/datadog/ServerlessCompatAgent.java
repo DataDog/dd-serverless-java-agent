@@ -50,9 +50,13 @@ public class ServerlessCompatAgent {
 
             Path tempDir = Paths.get(tempDirPath);
             Files.createDirectories(tempDir);
-            File executableFile = tempDir.resolve(fileName).toFile();
 
-            Files.copy(inputStream, executableFile.getAbsoluteFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Path filePath = Paths.get(fileName);
+            Path executableFilePath = tempDir.resolve(filePath.getFileName());
+
+            Files.copy(inputStream, executableFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+            File executableFile = executableFilePath.toFile();
             executableFile.setExecutable(true);
 
             ProcessBuilder processBuilder = new ProcessBuilder(executableFile.getAbsolutePath());
