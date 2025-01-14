@@ -6,7 +6,7 @@
 
     <groupId>org.datadoghq.com</groupId>
     <artifactId>dd-serverless-compat-java-agent</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <packaging>jar</packaging>
     <name>Datadog Serverless Compatibility Layer</name>
 
