@@ -1,2 +1,5 @@
-datadog-serverless-trace-mini-agent*
+# Compiled Binaries
+bin
+
+# Maven
 target

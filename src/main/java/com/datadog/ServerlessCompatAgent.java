@@ -10,8 +10,8 @@ import java.nio.file.StandardCopyOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServerlessAzureAgent {
-    private static final Logger log = LoggerFactory.getLogger(ServerlessAzureAgent.class);
+public class ServerlessCompatAgent {
+    private static final Logger log = LoggerFactory.getLogger(ServerlessCompatAgent.class);
     private static final String os = System.getProperty("os.name").toLowerCase();
 
     public static boolean isWindows() {
@@ -28,11 +28,11 @@ public class ServerlessAzureAgent {
 
         if (isWindows()) {
             log.debug("Detected {}", os);
-            fileName = "datadog-serverless-trace-mini-agent.exe";
+            fileName = "bin/windows-amd64/datadog-serverless-compat.exe";
             tempDirPath = "C:/local/Temp/datadog";
         } else if (isLinux()) {
             log.debug("Detected {}", os);
-            fileName = "datadog-serverless-trace-mini-agent";
+            fileName = "bin/linux-amd64/datadog-serverless-compat";
             tempDirPath = "/tmp/datadog";
         } else {
             log.error("Unsupported operating system {}", os);
@@ -41,7 +41,7 @@ public class ServerlessAzureAgent {
 
         log.info("Attempting to start {}", fileName);
 
-        try (InputStream inputStream = ServerlessAzureAgent.class.getClassLoader()
+        try (InputStream inputStream = ServerlessCompatAgent.class.getClassLoader()
                 .getResourceAsStream(fileName)) {
             if (inputStream == null) {
                 log.error("{} not found", fileName);
@@ -50,9 +50,13 @@ public class ServerlessAzureAgent {
 
             Path tempDir = Paths.get(tempDirPath);
             Files.createDirectories(tempDir);
-            File executableFile = tempDir.resolve(fileName).toFile();
 
-            Files.copy(inputStream, executableFile.getAbsoluteFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Path filePath = Paths.get(fileName);
+            Path executableFilePath = tempDir.resolve(filePath.getFileName());
+
+            Files.copy(inputStream, executableFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+            File executableFile = executableFilePath.toFile();
             executableFile.setExecutable(true);
 
             ProcessBuilder processBuilder = new ProcessBuilder(executableFile.getAbsolutePath());

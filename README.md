@@ -1,13 +1,13 @@
-# Datadog Serverless Azure Java Agent
+# Datadog Serverless Compatibility Java Agent
 
-Java agent used to start the Datadog Serverless Mini Agent. Intended for use with [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps) and [Azure Functions](https://azure.microsoft.com/en-us/products/functions).
+Java agent used to start the Datadog Serverless Compatibility Layer. Intended for use with [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps) and [Azure Functions](https://azure.microsoft.com/en-us/products/functions).
 
 # Getting Started
 
-- From the latest releases, download `dd-serverless-azure-java-agent.jar` and `dd-java-agent.jar` to your app:
-  * `wget -O dd-serverless-azure-java-agent.jar 'https://dtdg.co/latest-serverless-azure-java-agent'`
+- From the latest releases, download `dd-serverless-compat-java-agent.jar` and `dd-java-agent.jar` to your app:
+  * `wget -O dd-serverless-compat-java-agent.jar 'https://dtdg.co/latest-serverless-compat-java-agent'`
   * `wget -O dd-java-agent.jar 'https://dtdg.co/latest-java-tracer'`
-- Add the Datadog Serverless Azure Java Agent and Datadog Java Tracer as Java agents using the appropriate JVM Options environment variable:
+- Add the Datadog Serverless Compatibility Java Agent and Datadog Java Tracer as Java agents using the appropriate JVM Options environment variable:
   * Azure Spring App
     - `JVM_OPTIONS`
   * Azure Function, Consumption Plan
@@ -16,7 +16,7 @@ Java agent used to start the Datadog Serverless Mini Agent. Intended for use wit
     - `JAVA_OPTS`
   
 ```
--javaagent:/path/to/dd-serverless-azure-java-agent.jar -javaagent:/path/to/dd-java-agent.jar
+-javaagent:/path/to/dd-serverless-compat-java-agent.jar -javaagent:/path/to/dd-java-agent.jar
 ```
 
 - Set Datadog environment variables
@@ -35,7 +35,7 @@ Follow the instructions in the `dd-trace-java` repo to set up your Java environm
 
 ## Building the project
 
-Build the Datadog Serverless Mini Agent from [libdatadog](https://github.com/DataDog/libdatadog) and add the binaries, `datadog-serverless-trace-mini-agent` and `datadog-serverless-trace-mini-agent.exe`, to `src/main/resources`.
+Build the Datadog Serverless Compatibility Layer from [libdatadog](https://github.com/DataDog/libdatadog) and add the binaries, `datadog-serverless-compat` and `datadog-serverless-compat.exe`, to `src/main/resources`.
 
 To build the project run:
 ```
