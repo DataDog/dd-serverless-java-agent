@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 public class ServerlessCompatAgent {
     private static final Logger log = LoggerFactory.getLogger(ServerlessCompatAgent.class);
     private static final String os = System.getProperty("os.name").toLowerCase();
+    private static final String binaryPath = System.getenv("DD_SERVERLESS_COMPAT_PATH");
 
     public static boolean isWindows() {
         return os.contains("win");
@@ -39,8 +40,6 @@ public class ServerlessCompatAgent {
             return;
         }
 
-        log.info("Attempting to start {}", fileName);
-
         try (InputStream inputStream = ServerlessCompatAgent.class.getClassLoader()
                 .getResourceAsStream(fileName)) {
             if (inputStream == null) {
@@ -58,6 +57,14 @@ public class ServerlessCompatAgent {
 
             File executableFile = executableFilePath.toFile();
             executableFile.setExecutable(true);
+
+            if (binaryPath != null) {
+                log.debug("Detected user configured binary path {}", binaryPath);
+
+                File userExecutableFile = new File(binaryPath);
+                userExecutableFile.setExecutable(true);
+                executableFile = userExecutableFile;
+            }
 
             ProcessBuilder processBuilder = new ProcessBuilder(executableFile.getAbsolutePath());
             processBuilder.inheritIO();
