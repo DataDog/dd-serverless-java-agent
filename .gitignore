@@ -3,3 +3,4 @@ bin
 
 # Maven
 target
+settings.xml

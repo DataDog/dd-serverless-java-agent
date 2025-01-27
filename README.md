@@ -35,7 +35,7 @@ Follow the instructions in the `dd-trace-java` repo to set up your Java environm
 
 ## Building the project
 
-Build the Datadog Serverless Compatibility Layer from [libdatadog](https://github.com/DataDog/libdatadog) and add the binaries, `datadog-serverless-compat` and `datadog-serverless-compat.exe`, to `src/main/resources`.
+Build the Datadog Serverless Compatibility Layer from [libdatadog](https://github.com/DataDog/libdatadog) and add the binaries, `datadog-serverless-compat` and `datadog-serverless-compat.exe`, to `bin`.
 
 To build the project run:
 ```

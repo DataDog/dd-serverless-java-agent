@@ -72,8 +72,6 @@ jobs:
       - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       - run: |
           cp target/dd-serverless-compat-java-agent-${{ env.PACKAGE_VERSION }}.jar target/dd-serverless-compat-java-agent.jar
-          cp target/dd-serverless-compat-java-agent-${{ env.PACKAGE_VERSION }}.jar target/dd-serverless-azure-java-agent-${{ env.PACKAGE_VERSION }}.jar
-          cp target/dd-serverless-compat-java-agent-${{ env.PACKAGE_VERSION }}.jar target/dd-serverless-azure-java-agent.jar
       - uses: softprops/action-gh-release@01570a1f39cb168c169c802c3bceb9e93fb10974 # v2.1.0
         with:
           body: "Uses [${{ env.SERVERLESS_COMPAT_VERSION }}](https://github.com/DataDog/libdatadog/releases/tag/sls-${{ env.SERVERLESS_COMPAT_VERSION }}) of the Serverless Compatibility Layer binary."
@@ -84,8 +82,6 @@ jobs:
           files: |
             target/dd-serverless-compat-java-agent-${{ env.PACKAGE_VERSION }}.jar
             target/dd-serverless-compat-java-agent.jar
-            target/dd-serverless-azure-java-agent-${{ env.PACKAGE_VERSION }}.jar
-            target/dd-serverless-azure-java-agent.jar
       - uses: softprops/action-gh-release@01570a1f39cb168c169c802c3bceb9e93fb10974 # v2.1.0
         with:
           name: Latest
@@ -93,4 +89,3 @@ jobs:
           body: "This release tracks the latest version available, currently **${{ env.PACKAGE_VERSION }}**."
           files: |
             target/dd-serverless-compat-java-agent.jar
-            target/dd-serverless-azure-java-agent.jar
